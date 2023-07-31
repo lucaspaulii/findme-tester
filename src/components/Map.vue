@@ -52,7 +52,7 @@ export default {
             map: map,
           });
         })
-        .catch(() => {});
+        .catch(() => {console.log(marker)});
     });
     return { mapDiv };
   },
