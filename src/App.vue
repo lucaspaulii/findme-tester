@@ -167,19 +167,22 @@ async function handleSubmit(e: Event) {
       </button>
       <p v-if="isWaiting">Waiting for location...</p>
     </form>
-    <h2 v-if="postResponse?.status == 200" class="mb-2">
-        Link to get Location:
-        <a :href="postResponse.url" class=" font-bold underline text-blue-600">{{ postResponse.url }}</a>
-      </h2>
+
     <div
       v-if="postResponse"
-      class="w-full text-center gap-2 pb-4 hidden sm:block border-b-2 border-green-500"
+      class="w-full text-center gap-2 pb-4 border-b-2 border-green-500"
     >
       <h2
         v-if="postResponse.status == 202"
         class="font-bold text-green-800 mt-5 text-xl mb-4 bg-green-500 text-center"
       >
         SMS sent!
+      </h2>
+      <h2 v-if="postResponse.status == 200" class="mb-2">
+        Link to get Location:
+        <a :href="postResponse.url" class="font-bold underline text-blue-600">{{
+          postResponse.url
+        }}</a>
       </h2>
       <h2 class="font-bold">POST RESPONSE:</h2>
       <p>{{ JSON.stringify(postResponse, null, 4) }}</p>
