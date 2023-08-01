@@ -33,8 +33,8 @@ async function handleSubmit(e: Event) {
   reqObject.value.phone = `+${countryCode.value + reqObject.value.phone}`;
   if (!reqObject.value.requestIdentifier) {
     delete reqObject.value.requestIdentifier;
-  } else if (!reqObject.value.providerId || reqObject.value.providerId == "0") {
-    delete reqObject.value.providerId
+  } else if (!reqObject.value.providerId) {
+    reqObject.value.providerId = "0";
   }
 
   isWaiting.value = true;
@@ -176,6 +176,7 @@ async function handleSubmit(e: Event) {
       <h2 v-if="postResponse.status == 202" class="font-bold text-green-800 mt-5 text-xl mb-4 bg-green-500 text-center">SMS sent!</h2>
       <h2 class="font-bold">POST RESPONSE:</h2>
       <p>{{ JSON.stringify(postResponse, null, 4) }}</p>
+      <a :href="postResponse.url">{{ postResponse.url }}</a>
     </div>
     <div v-if="getResponse" class="w-full text-center gap-2 mt-4 pb-4 hidden sm:block border-b-2 border-green-500">
       <h2 class="font-bold">GET RESPONSE:</h2>
