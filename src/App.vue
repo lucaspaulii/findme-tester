@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { ref, Ref } from "vue";
-import postRequest, { RequestObj, RequestResponse } from "./services/postRequest";
+import postRequest, {
+  RequestObj,
+  RequestResponse,
+} from "./services/postRequest";
 import getRequest from "./services/getRequests";
 import codes from "country-calling-code";
 import Map from "./components/Map.vue";
@@ -18,11 +21,11 @@ const reqObject: Ref<RequestObj> = ref({
   notificationSMS: false,
 });
 
-const coords : Ref<any>  = ref(undefined);
+const coords: Ref<any> = ref(undefined);
 
-const postResponse : Ref<RequestResponse | undefined>  = ref(undefined);
+const postResponse: Ref<RequestResponse | undefined> = ref(undefined);
 
-const getResponse : Ref<any> = ref(undefined);
+const getResponse: Ref<any> = ref(undefined);
 
 const countryCode = ref("55");
 
@@ -171,14 +174,27 @@ async function handleSubmit(e: Event) {
       </button>
       <p v-if="isWaiting">Waiting for location...</p>
     </form>
-    <div v-if="postResponse" class="w-full text-center gap-2 pb-4 hidden sm:block border-b-2 border-green-500">
-      <h2 v-if="postResponse.status == 200">Send this link to your client: {{ postResponse.url }}</h2>
-      <h2 v-if="postResponse.status == 202" class="font-bold text-green-800 mt-5 text-xl mb-4 bg-green-500 text-center">SMS sent!</h2>
+    <div
+      v-if="postResponse"
+      class="w-full text-center gap-2 pb-4 hidden sm:block border-b-2 border-green-500"
+    >
+      <h2 v-if="postResponse.status == 200">
+        Link to get Location:
+        <a :href="postResponse.url" class=" font-bold underline text-blue-600">{{ postResponse.url }}</a>
+      </h2>
+      <h2
+        v-if="postResponse.status == 202"
+        class="font-bold text-green-800 mt-5 text-xl mb-4 bg-green-500 text-center"
+      >
+        SMS sent!
+      </h2>
       <h2 class="font-bold">POST RESPONSE:</h2>
       <p>{{ JSON.stringify(postResponse, null, 4) }}</p>
-      <a :href="postResponse.url">{{ postResponse.url }}</a>
     </div>
-    <div v-if="getResponse" class="w-full text-center gap-2 mt-4 pb-4 hidden sm:block border-b-2 border-green-500">
+    <div
+      v-if="getResponse"
+      class="w-full text-center gap-2 mt-4 pb-4 hidden sm:block border-b-2 border-green-500"
+    >
       <h2 class="font-bold">GET RESPONSE:</h2>
       <p>{{ JSON.stringify(getResponse, null, 4) }}</p>
     </div>
