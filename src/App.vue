@@ -132,13 +132,6 @@ async function handleSubmit(e: Event) {
           class="p-2 w-full rounded bg-white"
         />
       </div>
-      <input
-        type="text"
-        name="requestIdentifier"
-        v-model="reqObject.requestIdentifier"
-        class="p-2 w-full rounded"
-        placeholder="Request Identifier (optional)"
-      />
       <div class="flex gap-2 w-full">
         <input
           type="checkbox"
