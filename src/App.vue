@@ -178,7 +178,7 @@ async function handleSubmit(e: Event) {
       v-if="postResponse"
       class="w-full text-center gap-2 pb-4 hidden sm:block border-b-2 border-green-500"
     >
-      <h2 v-if="postResponse.status == 200">
+      <h2 v-if="postResponse.status == 200" class="mb-2 block sm:block">
         Link to get Location:
         <a :href="postResponse.url" class=" font-bold underline text-blue-600">{{ postResponse.url }}</a>
       </h2>
