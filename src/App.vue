@@ -180,7 +180,7 @@ async function handleSubmit(e: Event) {
       </h2>
       <h2 class="mb-2">
         Link to get Location:
-        <a :href="postResponse.url" class="font-bold underline text-blue-600">{{
+        <a :href="postResponse.url" target="_blank" class="font-bold underline text-blue-600">{{
           postResponse.url
         }}</a>
       </h2>
